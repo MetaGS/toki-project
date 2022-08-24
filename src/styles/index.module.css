@@ -1,0 +1,4 @@
+.standart-borders {
+  border: 1px solid var(--primary-border-color);
+  border-radius: var(--components-border-radius);
+}

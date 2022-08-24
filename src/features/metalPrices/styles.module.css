@@ -1,0 +1,33 @@
+.table {
+  font-family: "Sansation", sans-serif;
+  font-size: 1.2rem;
+  text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table tr {
+  border-bottom: 1px solid #6c6b6b;
+}
+
+.table th:first-of-type,
+.table td:first-of-type {
+  text-align: left;
+}
+
+.table th:last-of-type,
+.table td:last-of-type {
+  text-align: right;
+}
+
+.table th,
+.table td {
+  padding: 5px 0;
+}
+
+.table th {
+  color: #946bd6;
+}
+
+.table td {
+}

@@ -1,13 +1,30 @@
+html {
+  --primary-border-color: #6c6b6b;
+  --primary-color: #fff;
+  --secondary-color: rgba(148, 107, 214, 1);
+  --components-border-radius: 13px;
+  --main-components-padding: 20px;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #000;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+@font-face {
+  font-family: "Sansation";
+  src: url("./static/fonts/Sansation-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Sansation-Bold";
+  src: url("./static/fonts//Sansation-Bold.ttf") format("truetype");
 }

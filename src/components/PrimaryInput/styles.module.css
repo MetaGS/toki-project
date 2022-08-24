@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.primaryInputLabel {
+  justify-content: space-between;
+  width: 100%;
+  margin: 3px 0;
+  color: var(--secondary-color);
+  font-family: "Sansation-Bold", "sans-serif";
+}
+
+.wrapper:last-of-type {
+  margin-top: 10px;
+}
+
+.primaryInput {
+  color: var(--primary-color);
+  margin-left: 3px;
+  width: 75%;
+}

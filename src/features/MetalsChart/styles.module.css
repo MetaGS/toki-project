@@ -1,0 +1,21 @@
+.chartWrapper {
+  composes: standart-borders from "../../styles/index.module.css";
+  position: relative;
+  margin-top: 50px;
+}
+
+.chartLogo {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 5%;
+  top: 10%;
+  font-size: 15px;
+  font-family: "Sansation-Bold", sans-serif;
+  border-radius: 50%;
+  background: rgba(186, 120, 188, 0.71);
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

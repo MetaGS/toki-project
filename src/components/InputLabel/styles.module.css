@@ -1,0 +1,13 @@
+.label {
+  display: flex;
+  align-items: center;
+  font-family: "Sansation", sans-serif;
+}
+
+.label:not(:last-of-type) {
+  margin-bottom: 10px;
+}
+
+.text {
+  font-size: 16px;
+}

@@ -1,0 +1,51 @@
+.header {
+  width: 100%;
+  margin-top: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--primary-border-color);
+}
+
+.providerInput {
+  margin: 0 30% 0 auto;
+}
+
+.body {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 14px 0;
+}
+
+.metalUnit {
+  width: calc((100% - var(--main-components-padding)) / 3);
+  display: flex;
+  flex-direction: column;
+}
+
+.metalUnit:not(:first-of-type) {
+  margin-left: 15px;
+}
+
+.footer {
+  width: 100%;
+  font-family: "Sansation-Bold", sans-serif;
+}
+
+.weightInput {
+  width: 25%;
+  min-width: 40px;
+  margin: 0 3px;
+}
+
+.total {
+  width: 40%;
+  margin-left: auto;
+  text-align: right;
+}
+
+@media (max-width: 500px) {
+  .providerInput {
+    margin: 0 0 0 auto;
+  }
+}
