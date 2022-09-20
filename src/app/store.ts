@@ -5,7 +5,7 @@ import counterReducer from "../features/counter/counterSlice";
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
-    calculator: CalculatorSliceReducer,
+    calculator: CalculatorSliceReducer, // deplay prob
   },
 });
 
