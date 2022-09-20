@@ -63,4 +63,4 @@ export const downloadMetals = () => async (dispatch: any, getState: () => RootSt
   dispatch(setCurrentPrice(currentPrices));
 };
 
-export default CalculatorSlice.reducer;
+export const CalculatorSliceReducer = CalculatorSlice.reducer;
