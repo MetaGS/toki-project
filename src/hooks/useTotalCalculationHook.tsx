@@ -15,6 +15,14 @@ export const useSelectAllPropertiesForMetal = (metal: metals): number => {
 
   const price = customPrice ? customPrice : 0;
 
+  console.log(
+    calculateMetalCompoundPrice({
+      metalPrice: price,
+      compound,
+      percentage,
+    })
+  );
+
   return calculateMetalCompoundPrice({
     metalPrice: price,
     compound,
