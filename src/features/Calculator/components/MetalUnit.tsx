@@ -32,14 +32,12 @@ export default function MetalUnit({ className, inputTitle, metalUnit }: Props) {
   const currentPercentage = useSelectorWithProps(metalUnit, selectSinglePercentage);
   const currentCompound = useSelectorWithProps(metalUnit, selectSingleCompound);
 
+  const [localCompound, setLocalCompound] = useState(String(currentCompound));
+
   const dispatch = useAppDispatch();
 
   const onPriceChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      console.log(e.target.value);
-      console.log(+e.target.value);
-      console.log(parseFloat(e.target.value));
-
       dispatch(
         setCustomPrice({
           metal: metalUnit,
@@ -76,14 +74,14 @@ export default function MetalUnit({ className, inputTitle, metalUnit }: Props) {
     dispatch(
       setCompound({
         metal: metalUnit,
-        compound: parseFloat(String(currentCompound)),
+        compound: parseFloat(localCompound),
       })
     );
   }, [currentCompound]);
 
   const onCompoundChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      dispatch(setCompound({ metal: metalUnit, compound: +e.target.value }));
+      setLocalCompound(e.target.value);
     },
     [metalUnit]
   );
@@ -109,7 +107,7 @@ export default function MetalUnit({ className, inputTitle, metalUnit }: Props) {
       />
       <PrimaryInput
         title="gr"
-        value={String(currentCompound)}
+        value={localCompound}
         onChange={onCompoundChange}
         onBlur={onCompoundChangeEnd}
         type="number"

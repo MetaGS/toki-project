@@ -11,11 +11,20 @@ export default function CalculatorFooter() {
   const netWeight = useAppSelector(selectNetWeight);
   const dispatch = useAppDispatch();
 
+  const [localNetWeight, setLocalNetWeight] = React.useState(String(netWeight));
+
   const calcedForKg = useTotalCalculationHook();
+
+  const handleNetWeightChangeEnd = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch(setNetWeight(+e.target.value));
+    },
+    []
+  );
 
   const handleNetWeightChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      dispatch(setNetWeight(+e.target.value));
+      setLocalNetWeight(e.target.value);
     },
     []
   );
@@ -27,8 +36,9 @@ export default function CalculatorFooter() {
         <DefaultInput
           className={styles.weightInput}
           onChange={handleNetWeightChange}
+          onBlur={handleNetWeightChangeEnd}
           type="number"
-          {...{ value: String(netWeight) }}
+          {...{ value: localNetWeight }}
         />
         <span>Kg</span>
         <div className={styles.total}>Total: {+calcedForKg.total * netWeight}$</div>
