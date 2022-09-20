@@ -30,6 +30,7 @@
 .footer {
   width: 100%;
   font-family: "Sansation-Bold", sans-serif;
+  text-align: right;
 }
 
 .weightInput {
@@ -48,4 +49,9 @@
   .providerInput {
     margin: 0 0 0 auto;
   }
+}
+
+.forSingleKg {
+  font-size: 12px;
+  opacity: 0.5;
 }

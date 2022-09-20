@@ -1,6 +1,11 @@
 import axios from "axios";
 import { getDate, getDate30DaysAgo } from "../utils/date.utils";
-import { IMetal } from "./types";
+import {
+  ICurrentPriceMain,
+  ICurrentPriceSecondary,
+  IHistoryEntry,
+  IMetal,
+} from "./types";
 
 const baseURL = `https://api.polygon.io/v2/aggs/ticker/`;
 const API_KEY = "qQKrDkpO6QOUyzQPXjpqzkfWCZjWdnQ7";
@@ -22,13 +27,21 @@ metalsAPI.interceptors.response.use(
   }
 );
 
+const currentPriceAPI = axios.create({
+  baseURL: `https://api.metals.live/v1/spot`,
+});
+
+// currentPriceAPI.interceptors.response.use((response) => response.data);
+
 export const historyEndpoints = {
-  platinum: () => metalsAPI.get<IMetal[]>(params("C:XPTUSD")),
-  palladium: () => metalsAPI.get<IMetal[]>(params("C:XPDUSD")),
+  platinum: () => metalsAPI.get<IHistoryEntry>(params("C:XPTUSD")),
+  palladium: () => metalsAPI.get<IHistoryEntry>(params("C:XPDUSD")),
+  rhodium: () => Promise.reject("Not implemented"),
   // rhodium: () => metalsAPI.get<IMetal[]>(params("C:XRHUSD")),
 };
 
 export const currentPriceEndpoints = {
-  mainSyms: () => axios.get<IMetal[]>("https://api.metals.live/v1/spot"),
-  secondarySyms: () => axios.get<IMetal[]>("https://api.metals.live/v1/spot/commodities"),
+  mainSyms: () =>
+    currentPriceAPI.get<ICurrentPriceMain[]>("https://api.metals.live/v1/spot"),
+  secondarySyms: () => currentPriceAPI.get<ICurrentPriceSecondary[]>("/commodities"),
 };

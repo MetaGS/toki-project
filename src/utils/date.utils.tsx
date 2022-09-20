@@ -28,12 +28,13 @@ export const getDate30DaysAgo = (date: Date = new Date()) => {
   return date;
 };
 
-const checkIsDateIsToday = (date: Date) => {
+export const checkIsDateIsToday = (date: Date) => {
   const today = new Date();
+  date = new Date(date);
   return date.getDate() === today.getDate() && date.getMonth() === today.getMonth();
 };
 
 export const getMonth = (date: Date) => {
   const month = date.getMonth();
-  return monthNames[month];
+  return monthNames[month] + " " + date.getDate();
 };

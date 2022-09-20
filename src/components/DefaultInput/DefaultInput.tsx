@@ -1,28 +1,27 @@
-import React from "react";
+import React, { HTMLAttributes, HTMLInputTypeAttribute } from "react";
 import styles from "./styles.module.css";
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLInputElement> {
   className?: string;
-  type?: "text" | "number";
+  type?: HTMLInputTypeAttribute;
   placeholder?: string;
-  value?: number;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function DefaultInput({
-  value,
   onChange,
   placeholder,
   className,
   type = "text",
+  ...rest
 }: Props) {
   return (
     <input
       type={type}
       placeholder={placeholder}
       className={`${styles.input} ${className}`}
-      value={value}
       onChange={onChange}
+      {...rest}
     />
   );
 }

@@ -1,4 +1,4 @@
-import React, { ForwardedRef } from "react";
+import React, { ForwardedRef, useEffect, useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,14 +9,19 @@ import {
   Tooltip,
   Legend,
   Chart,
+  ChartData,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
 import styles from "./styles.module.css";
-import { currentPriceEndpoints, historyEndpoints } from "../../services";
-import { extract24Hours } from "../../utils/data.mod.util";
-import { IMetal } from "../../services/types";
 import { getMonth } from "../../utils/date.utils";
+import { metals } from "../calculator/types";
+import { IData } from "../../types/interfaces";
+import { MetalDataProvider } from "../../services/metalDataProvider.service";
+import { prepareDataForChart } from "../../utils/data.mod.util";
+import { useSelectorWithProps } from "../../hooks/useSelectorHook";
+import { selectSinglePrice } from "../calculator/selectors";
+import classNames from "classnames";
 
 ChartJS.register(
   CategoryScale,
@@ -326,42 +331,53 @@ export const data = {
   ],
 };
 
-export default function App() {
-  const [data24, setData] = React.useState<IMetal[]>([]);
-  const chartRef = React.useRef<Chart<"line">>();
+interface Prop {
+  metal: metals;
+  color?: string;
+}
 
-  React.useEffect(() => {
-    historyEndpoints
-      .platinum()
-      .then((res) => {
-        const data = res.data;
-        console.log(data);
-      })
-      .catch((err) => {});
+const metalNameMap = {
+  platinum: "Pt",
+  palladium: "Pd",
+  rhodium: "Rh",
+};
 
-    historyEndpoints
-      .palladium()
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {});
-  }, []);
+export default function ChartComponent({ metal, color }: Prop) {
+  const [historyData, setHistoryData] = useState<ChartData<"line">>(data);
+  const currentPrice = useSelectorWithProps(metal, selectSinglePrice);
 
-  React.useEffect(() => {
-    if (chartRef.current && !chartRef.current.canvas.querySelector(styles.chartLogo)) {
-      const logo = document.createElement("div");
-      const logoText = document.createTextNode("Pt");
-      logo.classList.add(styles.chartLogo);
-      logo.appendChild(logoText);
+  const lastDayData = historyData.datasets[0].data.slice(-1)[0];
+  const priceDiff = ((Number(currentPrice) / +(lastDayData || 1) - 1) * 100).toFixed(2);
+  const increasedPrice = Number(priceDiff) > 0;
 
-      chartRef.current.canvas.appendChild(logo);
+  console.log(color);
+
+  useEffect(() => {
+    async function fetchData() {
+      const history = await MetalDataProvider.getHistory(metal);
+
+      setHistoryData(
+        prepareDataForChart(history, {
+          borderColor: color || "rgba(185, 119, 191, 1)",
+          backgroundColor: color || "rgba(185, 119, 191, 1)",
+        })
+      );
     }
-  }, [chartRef]);
+    fetchData();
+  }, [metal]);
 
   return (
     <div className={styles.chartWrapper}>
-      <Line options={options} ref={chartRef} data={data} />
-      <label className={styles.chartLogo}>Pt</label>
+      <Line options={options} data={historyData} />
+      <label className={styles.chartLogo}>{metalNameMap[metal]}</label>
+      <div className={styles.priceBlock}>
+        <span
+          className={classNames(styles.diff, { [styles.decreased]: !increasedPrice })}
+        >
+          {`${increasedPrice ? "+" : "-"}${priceDiff}`}%
+        </span>
+        <span className={styles.price}>{currentPrice} $</span>
+      </div>
     </div>
   );
 }

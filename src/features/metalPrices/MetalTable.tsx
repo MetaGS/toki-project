@@ -1,8 +1,17 @@
 import React from "react";
 import WrapperWithBorder from "../../components/WrapperWithBorder/WrapperWithBorder";
+import { useSelectorWithProps } from "../../hooks/useSelectorHook";
+import { selectSinglePrice } from "../calculator/selectors";
 import styles from "./styles.module.css";
 
 export default function MetalTable() {
+  const stockPricePlatinum =
+    parseInt(useSelectorWithProps("platinum", selectSinglePrice)) ?? 0;
+  const stockPricePalladium =
+    parseInt(useSelectorWithProps("palladium", selectSinglePrice)) ?? 0;
+  const stockPriceRhodium =
+    parseInt(useSelectorWithProps("rhodium", selectSinglePrice)) ?? 0;
+
   return (
     <WrapperWithBorder title="Metal">
       <table className={styles.table}>
@@ -17,21 +26,21 @@ export default function MetalTable() {
         <tbody>
           <tr>
             <td>Platinum</td>
-            <td>990</td>
-            <td>986</td>
-            <td>-0.75</td>
+            <td>{stockPricePlatinum}</td>
+            <td>{stockPricePlatinum}</td>
+            <td>0.00</td>
           </tr>
           <tr>
             <td>Paladium</td>
-            <td>990</td>
-            <td>986</td>
-            <td>-0.75</td>
+            <td>{stockPricePalladium}</td>
+            <td>{stockPricePalladium}</td>
+            <td>0.75</td>
           </tr>
           <tr>
             <td>Rhodium</td>
-            <td>990</td>
-            <td>986</td>
-            <td>-0.75</td>
+            <td>{stockPriceRhodium}</td>
+            <td>{stockPriceRhodium}</td>
+            <td>0.75</td>
           </tr>
         </tbody>
       </table>
