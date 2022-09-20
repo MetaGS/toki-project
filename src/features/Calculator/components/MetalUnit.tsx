@@ -85,6 +85,12 @@ export default function MetalUnit({ className, inputTitle, metalUnit }: Props) {
   const onCompoundChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setLocalCompound(e.target.value);
+      dispatch(
+        setCompound({
+          metal: metalUnit,
+          compound: +e.target.value,
+        })
+      );
     },
     [metalUnit]
   );

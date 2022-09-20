@@ -25,6 +25,7 @@ export default function CalculatorFooter() {
   const handleNetWeightChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setLocalNetWeight(e.target.value);
+      dispatch(setNetWeight(+e.target.value));
     },
     []
   );
