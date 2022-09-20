@@ -1,4 +1,4 @@
-import { IMetalsOptions } from "../features/calculator/types";
+import { IMetalsOptions } from "../features/Calculator/types";
 
 export interface IMetal {
   price: string;

@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useAppSelector } from "../app/hooks";
 import { RootState } from "../app/store";
-import { metals } from "../features/calculator/types";
+import { metals } from "../features/Calculator/types";
 
 export function useSelectorWithProps<Type>(
   prop: metals,

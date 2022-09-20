@@ -4,7 +4,7 @@ import {
   initialPercentages,
   initialPrices,
 } from "../const/initialValues.const";
-import { IMetalsOptions, metals } from "../features/calculator/types";
+import { IMetalsOptions, metals } from "../features/Calculator/types";
 import { IData } from "../types/interfaces";
 import {
   prepareDataForChartAndLocalStorage,

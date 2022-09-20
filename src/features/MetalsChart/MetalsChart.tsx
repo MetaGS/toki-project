@@ -15,12 +15,12 @@ import { Line } from "react-chartjs-2";
 
 import styles from "./styles.module.css";
 import { getMonth } from "../../utils/date.utils";
-import { metals } from "../calculator/types";
+import { metals } from "../Calculator/types";
 import { IData } from "../../types/interfaces";
 import { MetalDataProvider } from "../../services/metalDataProvider.service";
 import { prepareDataForChart } from "../../utils/data.mod.util";
 import { useSelectorWithProps } from "../../hooks/useSelectorHook";
-import { selectSinglePrice } from "../calculator/selectors";
+import { selectSinglePrice } from "../Calculator/selectors";
 import classNames from "classnames";
 
 ChartJS.register(

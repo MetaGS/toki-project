@@ -3,8 +3,8 @@ import {
   selectSingleCompound,
   selectSingleCustomPrice,
   selectSinglePercentage,
-} from "../features/calculator/selectors";
-import { metals } from "../features/calculator/types";
+} from "../features/Calculator/selectors";
+import { metals } from "../features/Calculator/types";
 import { calculateMetalCompoundPrice } from "../utils/calculation.utils";
 import { useSelectorWithProps } from "./useSelectorHook";
 

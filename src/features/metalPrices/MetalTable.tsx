@@ -1,7 +1,7 @@
 import React from "react";
 import WrapperWithBorder from "../../components/WrapperWithBorder/WrapperWithBorder";
 import { useSelectorWithProps } from "../../hooks/useSelectorHook";
-import { selectSinglePrice } from "../calculator/selectors";
+import { selectSinglePrice } from "../Calculator/selectors";
 import styles from "./styles.module.css";
 
 export default function MetalTable() {
