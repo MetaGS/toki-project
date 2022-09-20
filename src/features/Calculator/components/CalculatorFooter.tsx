@@ -41,7 +41,9 @@ export default function CalculatorFooter() {
           {...{ value: localNetWeight }}
         />
         <span>Kg</span>
-        <div className={styles.total}>Total: {+calcedForKg.total * netWeight}$</div>
+        <div className={styles.total}>
+          Total: {(+calcedForKg.total * netWeight).toFixed(2)}$
+        </div>
       </InputLabel>
     </>
   );
